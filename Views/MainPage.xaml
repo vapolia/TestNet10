@@ -1,0 +1,17 @@
+<ContentPage
+    x:Class="TestApp.ForCollectionViewBug.Views.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:TestApp.ForCollectionViewBug.Views"
+    x:DataType="views:MainPage"
+    Title="CollectionView Issues"
+    SafeAreaEdges="All"
+    x:Name="ThePage">
+
+    <VerticalStackLayout Spacing="10" Padding="15,20" SafeAreaEdges="All">
+        
+        <Button Text="Width 0 to 300 bug (android ios)/crash (ios)" Clicked='Bug1_OnClicked' HorizontalOptions="Start" />
+        
+    </VerticalStackLayout>
+    
+</ContentPage>

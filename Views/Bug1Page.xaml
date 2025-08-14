@@ -1,0 +1,60 @@
+<ContentPage
+    x:Class="TestApp.ForCollectionViewBug.Views.Bug1Page"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:views="clr-namespace:TestApp.ForCollectionViewBug.Views"
+    x:DataType="views:MainPage"
+    Title="CollectionView Issue"
+    SafeAreaEdges="All"
+    x:Name="ThePage">
+
+    <Grid SafeAreaEdges="All">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0" x:Name="Col3" />
+        </Grid.ColumnDefinitions>
+        
+        <ScrollView>
+            <VerticalStackLayout Spacing="10" HorizontalOptions="Start" Padding="15,20" BackgroundColor="LightBlue">
+                <Label LineBreakMode="WordWrap" Text="This Grid has 3 columns." />
+                <Label LineBreakMode="WordWrap" Text="The width of the 3rd column is 0 and contains a CollectionView. " />
+                <Label LineBreakMode="WordWrap" Text="iOS: when adding the 1st item while the 3rd column width is 0, the app freezes." />
+                <Label LineBreakMode="WordWrap" Text="Tested on iOS 18.5" />
+                <Label LineBreakMode="WordWrap" Text="Android: after adding items while the 3rd column width is 0, then showing the 3rd column, the CollectionView's content appears incorrectly. You have to scroll down to see the 1st item." />
+                <Label LineBreakMode="WordWrap" Text="Tested on Android API36" />
+                
+                <Button Text="Add an Item to the CollectionView" Clicked="OnAddItem" LineBreakMode="WordWrap" />
+                <Button Text="Show the 3rd Column" Clicked="OnShowColumn" LineBreakMode="WordWrap" />
+            </VerticalStackLayout>
+        </ScrollView>
+
+        <!-- To check is the app is frozen -->
+        <Label x:Name="TheTimer" FontSize="16" VerticalOptions="Start" HorizontalOptions="End"
+               Grid.Column="1"
+               Text="Timer"
+               Margin="15,20" />
+
+        <CollectionView Grid.Column="2"
+                        ItemsSource="{Binding Items, Source={x:Reference ThePage}}"
+                        BackgroundColor="Red"
+                        HorizontalOptions="Fill" VerticalOptions="Fill">
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="views:ItemData">
+                    <VerticalStackLayout>
+                        <Label Text="Data" 
+                               FontSize="16" 
+                               BackgroundColor="Blue" 
+                               TextColor="Black" />
+                        
+                        <Label Text="{Binding Value}" 
+                               FontSize="16" 
+                               BackgroundColor="Yellow" 
+                               TextColor="Black" />
+                    </VerticalStackLayout>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    
+</ContentPage>
