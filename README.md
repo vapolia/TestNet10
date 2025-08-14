@@ -1,5 +1,15 @@
 # Demo app to demonstrate layout issues
 
+## App Layout
+
+1st page: nothing special
+
+2nd page:
+- contains a Grid with 3 columns
+- the 3rd column's width is set to 0 and can be programmatically updated
+- the 3rd column contains a CollectionView
+
+
 ## 1. Android+Windows
 
 Issue:
@@ -33,17 +43,17 @@ Expected:
 
 ## 3. iOS (issue in progress)
 
-ISSUE IN PROGRESS. CURRENTLY EXTRACTING CODE FROM ANOTHER PROJECT.
+ISSUE IN PROGRESS. CURRENTLY EXTRACTING CODE FROM ANOTHER PROJECT.  
+REPRO NOT AVAILABLE YET
 
 Issue:
-- Adding an item to the CollectionView freezes the app
+- when adding the 1st item to the CollectionView while the 3rd column's width is 0, the app freezes.
 
 Repro steps:
-- (in progress)
+- Tested on simulator iPhone iOS 18.6
 
 Result:
 - app freezes (you can check the counter: it stops)
 
 Expected:
 - app do not freeze
-
